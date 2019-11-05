@@ -1,17 +1,5 @@
 # Shaw and Partners Frontend Test
 
-## 1 - [full-stack] [back-end]
-Create an API that will proxy all client requests to the appropriate GitHub endpoint. The following endpoints must be provided:
-
-- GET - /api/users?since={number}
-This endpoint must return a list of GitHub users and the link for the next page.
-
-- GET - /api/users/:username/details
-This endpoint must return the details of a GitHub user
-
-- GET - /api/users/:username/repos
-This endpoint must return a list with all user repositories
-
 ## 3 - [full-stack] [front-end]
 Create a screen that will list all users from GitHub and will display their Id and Login. Remember, you can’t list all users at once you will have to use pagination.
 
