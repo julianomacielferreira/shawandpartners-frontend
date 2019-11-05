@@ -53,7 +53,7 @@ In the root project folder build the image and fire up the container:
 $ docker-compose up -d --build
 ```
 
-Open your browser to http://localhost:4201 and you should see the app. Try making a change to the AppComponent’s template (src/app/app.component.html) within your code editor. You should see the app hot-reload. 
+Open your browser to **http://localhost:4201** and you should see the app. Try making a change to the AppComponent’s template (src/app/app.component.html) within your code editor. You should see the app hot-reload. 
 
 Ensure the app is running in the browser and test hot-reloading again. Try both the unit and e2e tests as well:
 
