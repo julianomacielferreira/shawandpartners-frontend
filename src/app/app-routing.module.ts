@@ -23,9 +23,14 @@
  */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { ListUsersComponent } from './list-users/list-users.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'users', component: ListUsersComponent },
+  { path: '', redirectTo: '/users', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
