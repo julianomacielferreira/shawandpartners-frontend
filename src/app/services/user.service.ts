@@ -21,51 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { UserService } from '../user.service';
-import { User } from '../user';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../models/user';
 import { Observable } from 'rxjs';
-import { Repository } from '../repository';
+import { Repository } from '../models/repository';
 
-@Component({
-  selector: 'mlocks-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss']
+@Injectable({
+  providedIn: 'root'
 })
-export class UserDetailComponent implements OnInit {
+export class UserService {
 
-  public user: User;
-  public repositories: Repository[];
 
-  constructor(
-    private route: ActivatedRoute,
-    private location: Location,
-    private userService: UserService
-  ) { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {
+  public listUsers(since: number): Observable<User[]> {
 
-    const login = this.route.snapshot.paramMap.get('login');
+    const githubUsersUrl = `https://api.github.com/users?since=${since}&per_page=5`;
 
-    this.loadUser(login);
-
-    this.loadRepositories(login);
+    return this.http.get<User[]>(githubUsersUrl);
   }
 
-  goBack(): void {
-    this.location.back();
+  public getUser(login: string): Observable<User> {
+
+    const githubUserUrl = `https://api.github.com/users/${login}`;
+
+    return this.http.get<User>(githubUserUrl);
   }
 
-  private loadUser(login: string): void {
+  public listUserRepositories(login: string): Observable<Repository[]> {
 
-    this.userService.getUser(login).subscribe(user => this.user = user);
+    const githubUserReposUrl = `https://api.github.com/users/${login}/repos`;
+
+    return this.http.get<Repository[]>(githubUserReposUrl);
   }
-
-  private loadRepositories(login: string): void {
-
-    this.userService.listUserRepositories(login).subscribe(repositories => this.repositories = repositories);
-  }
-
 }

@@ -22,40 +22,50 @@
  * THE SOFTWARE.
  */
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { User } from '../user';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
+import { Observable } from 'rxjs';
+import { Repository } from '../../models/repository';
 
 @Component({
-  selector: 'mlocks-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  selector: 'mlocks-user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class UserDetailComponent implements OnInit {
 
-  public since = 0;
-  public users: User[];
+  public user: User;
+  public repositories: Repository[];
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
 
-    this.loadUsers();
+    const login = this.route.snapshot.paramMap.get('login');
+
+    this.loadUser(login);
+
+    this.loadRepositories(login);
   }
 
-  public previousPage(): void {
-    this.since -= 5;
-    this.loadUsers();
+  goBack(): void {
+    this.location.back();
   }
 
-  public nextPage(): void {
-    this.since += 5;
-    this.loadUsers();
+  private loadUser(login: string): void {
+
+    this.userService.getUser(login).subscribe(user => this.user = user);
   }
 
-  private loadUsers(): void {
-    this.userService.listUsers(this.since).subscribe((listUsers: User[]) => {
-      this.users = listUsers;
-    });
+  private loadRepositories(login: string): void {
+
+    this.userService.listUserRepositories(login).subscribe(repositories => this.repositories = repositories);
   }
 
 }

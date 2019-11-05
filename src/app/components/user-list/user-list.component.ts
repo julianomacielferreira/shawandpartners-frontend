@@ -21,38 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from './user';
-import { Observable } from 'rxjs';
-import { Repository } from './repository';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
-@Injectable({
-  providedIn: 'root'
+@Component({
+  selector: 'mlocks-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss']
 })
-export class UserService {
+export class UserListComponent implements OnInit {
 
+  public since = 0;
+  public users: User[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private userService: UserService) { }
 
-  public listUsers(since: number): Observable<User[]> {
+  ngOnInit() {
 
-    const githubUsersUrl = `https://api.github.com/users?since=${since}&per_page=5`;
-
-    return this.http.get<User[]>(githubUsersUrl);
+    this.loadUsers();
   }
 
-  public getUser(login: string): Observable<User> {
-
-    const githubUserUrl = `https://api.github.com/users/${login}`;
-
-    return this.http.get<User>(githubUserUrl);
+  public previousPage(): void {
+    this.since -= 5;
+    this.loadUsers();
   }
 
-  public listUserRepositories(login: string): Observable<Repository[]> {
-
-    const githubUserReposUrl = `https://api.github.com/users/${login}/repos`;
-
-    return this.http.get<Repository[]>(githubUserReposUrl);
+  public nextPage(): void {
+    this.since += 5;
+    this.loadUsers();
   }
+
+  private loadUsers(): void {
+    this.userService.listUsers(this.since).subscribe((listUsers: User[]) => {
+      this.users = listUsers;
+    });
+  }
+
 }
