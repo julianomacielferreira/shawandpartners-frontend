@@ -21,30 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from './user';
-import { Observable } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class UserService {
+import { UserDetailComponent } from './user-detail.component';
 
+describe('UserDetailComponent', () => {
+  let component: UserDetailComponent;
+  let fixture: ComponentFixture<UserDetailComponent>;
 
-  constructor(private http: HttpClient) { }
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [UserDetailComponent]
+    })
+      .compileComponents();
+  }));
 
-  public listUsers(since: number): Observable<User[]> {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UserDetailComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    const githubUsersUrl = `https://api.github.com/users?since=${since}&per_page=5`;
-
-    return this.http.get<User[]>(githubUsersUrl);
-  }
-
-  public getUser(login: string): Observable<User> {
-
-    const githubUserUrl = `https://api.github.com/users/${login}`;
-
-    return this.http.get<User>(githubUserUrl);
-  }
-}
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

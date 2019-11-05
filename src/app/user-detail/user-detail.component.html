@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+
+        <div class="card mb-3" *ngIf="user">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{user.avatar_url}}" class="card-img" alt="{{user.login}}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            #{{user.id}} - {{user.login}}
+                        </h3>
+                        <p class="card-text">
+                            <b>Profile URL:</b>&nbsp;<a href="{{user.html_url}}">{{user.html_url}}</a>
+                        </p>
+                        <p class="card-text">
+                            <b>Created at:</b>&nbsp;{{user.created_at | date: 'short'}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Repository</th>
+                        <th scope="col">URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">26899533</th>
+                        <td>30daysoflaptops.github.io</td>
+                        <td>https://github.com/mojombo/30daysoflaptops.github.io</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <button type="button" class="btn btn-lg btn-dark" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i> Go Back
+        </button>
+    </div>
+</div>

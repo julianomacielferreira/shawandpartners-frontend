@@ -21,30 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from './user';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { UserService } from '../user.service';
+import { User } from '../user';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
+@Component({
+  selector: 'mlocks-user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.scss']
 })
-export class UserService {
+export class UserDetailComponent implements OnInit {
 
+  public user: User;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private userService: UserService
+  ) { }
 
-  public listUsers(since: number): Observable<User[]> {
+  ngOnInit() {
 
-    const githubUsersUrl = `https://api.github.com/users?since=${since}&per_page=5`;
+    const login = this.route.snapshot.paramMap.get('login');
 
-    return this.http.get<User[]>(githubUsersUrl);
+    this.userService.getUser(login).subscribe(user => this.user = user);
   }
 
-  public getUser(login: string): Observable<User> {
-
-    const githubUserUrl = `https://api.github.com/users/${login}`;
-
-    return this.http.get<User>(githubUserUrl);
+  goBack(): void {
+    this.location.back();
   }
+
 }
