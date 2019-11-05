@@ -40,4 +40,11 @@ export class UserService {
 
     return this.http.get<User[]>(githubUsersUrl);
   }
+
+  public getUser(username: string): Observable<User> {
+
+    const githubUserUrl = `https://api.github.com/users/${username}`;
+
+    return this.http.get<User>(githubUserUrl);
+  }
 }

@@ -23,12 +23,11 @@
  */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { ListUsersComponent } from './list-users/list-users.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 const routes: Routes = [
-  { path: 'users', component: ListUsersComponent },
+  { path: 'users', component: UserListComponent },
   { path: '', redirectTo: '/users', pathMatch: 'full' }
 ];
 

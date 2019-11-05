@@ -21,41 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { User } from '../user';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'mlocks-list-users',
-  templateUrl: './list-users.component.html',
-  styleUrls: ['./list-users.component.scss']
-})
-export class ListUsersComponent implements OnInit {
+import { UserListComponent } from './user-list.component';
 
-  public since = 0;
-  public users: User[];
+describe('UserListComponent', () => {
+  let component: UserListComponent;
+  let fixture: ComponentFixture<UserListComponent>;
 
-  constructor(private userService: UserService) { }
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [UserListComponent]
+    })
+      .compileComponents();
+  }));
 
-  ngOnInit() {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UserListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    this.loadUsers();
-  }
-
-  public previousPage(): void {
-    this.since -= 5;
-    this.loadUsers();
-  }
-
-  public nextPage(): void {
-    this.since += 5;
-    this.loadUsers();
-  }
-
-  private loadUsers(): void {
-    this.userService.listUsers(this.since).subscribe((listUsers: User[]) => {
-      this.users = listUsers;
-    });
-  }
-
-}
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
