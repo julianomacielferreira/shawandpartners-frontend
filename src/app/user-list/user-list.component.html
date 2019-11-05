@@ -1,10 +1,10 @@
 <h1>
-    <i class="fab fa-github"></i> List of Users
+    <i class="fab fa-github"></i> GitHub Users
 </h1>
 
 <div class="table-responsive">
-    <table class="table table-dark">
-        <thead>
+    <table class="table table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Avatar</th>
@@ -20,7 +20,7 @@
                 </td>
                 <td>{{user.login}}</td>
                 <td>
-                    <button type="button" class="btn btn-light" [routerLink]="['/user', user.login]">Details</button>
+                    <button type="button" class="btn btn-dark" [routerLink]="['/user', user.login]">Details</button>
                 </td>
             </tr>
         </tbody>

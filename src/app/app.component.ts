@@ -30,5 +30,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  public year: number = new Date().getFullYear();
+
   constructor() { }
 }
