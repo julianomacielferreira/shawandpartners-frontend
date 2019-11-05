@@ -27,6 +27,7 @@ import { Location } from '@angular/common';
 import { UserService } from '../user.service';
 import { User } from '../user';
 import { Observable } from 'rxjs';
+import { Repository } from '../repository';
 
 @Component({
   selector: 'mlocks-user-detail',
@@ -36,6 +37,7 @@ import { Observable } from 'rxjs';
 export class UserDetailComponent implements OnInit {
 
   public user: User;
+  public repositories: Repository[];
 
   constructor(
     private route: ActivatedRoute,
@@ -47,11 +49,23 @@ export class UserDetailComponent implements OnInit {
 
     const login = this.route.snapshot.paramMap.get('login');
 
-    this.userService.getUser(login).subscribe(user => this.user = user);
+    this.loadUser(login);
+
+    this.loadRepositories(login);
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  private loadUser(login: string): void {
+
+    this.userService.getUser(login).subscribe(user => this.user = user);
+  }
+
+  private loadRepositories(login: string): void {
+
+    this.userService.listUserRepositories(login).subscribe(repositories => this.repositories = repositories);
   }
 
 }

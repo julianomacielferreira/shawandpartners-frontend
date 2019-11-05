@@ -22,6 +22,9 @@
             </div>
         </div>
 
+        <button type="button" class="btn btn-lg btn-dark" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i> Go Back
+        </button>
     </div>
 
     <div class="col-md-6 col-sm-12">
@@ -36,19 +39,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">26899533</th>
-                        <td>30daysoflaptops.github.io</td>
-                        <td>https://github.com/mojombo/30daysoflaptops.github.io</td>
+                    <tr *ngFor="let repository of repositories">
+                        <th scope="row">{{repository.id}}</th>
+                        <td>{{repository.name}}</td>
+                        <td>{{repository.html_url}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
-
-    <div class="col-12">
-        <button type="button" class="btn btn-lg btn-dark" (click)="goBack()">
-            <i class="fas fa-arrow-left"></i> Go Back
-        </button>
     </div>
 </div>
