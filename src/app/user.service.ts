@@ -25,6 +25,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user';
 import { Observable } from 'rxjs';
+import { Repository } from './repository';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,12 @@ export class UserService {
     const githubUserUrl = `https://api.github.com/users/${login}`;
 
     return this.http.get<User>(githubUserUrl);
+  }
+
+  public listUserRepositories(login: string): Observable<Repository[]> {
+
+    const githubUserReposUrl = `https://api.github.com/users/${login}/repos`;
+
+    return this.http.get<Repository[]>(githubUserReposUrl);
   }
 }
