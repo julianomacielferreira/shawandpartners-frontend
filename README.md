@@ -19,6 +19,22 @@ On the details screen (created on step 4) add a table that will display the publ
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
 
+## Install Dependencies
+
+**1. Check if you have a recent version of [Node.js](https://nodejs.org/) (which comes bundled with [npm](https://www.npmjs.com/), a JavaScript package manager) and [Angular CLI](https://angular.io/guide/setup-local#step-1-install-the-angular-cli):**
+
+```bash
+$ node -v
+```
+
+```bash
+$ npm -v
+```
+
+```bash
+$ ng --version
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -53,16 +69,9 @@ In the root project folder build the image and fire up the container:
 $ docker-compose up -d --build
 ```
 
-Open your browser to **http://localhost:4201** and you should see the app. Try making a change to the AppComponent’s template (src/app/app.component.html) within your code editor. You should see the app hot-reload. 
+Open your browser to **http://localhost:4200** and you should see the app. Try making a change to the AppComponent’s template (src/app/app.component.html) within your code editor. You should see the app hot-reload. 
 
-Ensure the app is running in the browser and test hot-reloading again. Try both the unit and e2e tests as well:
-
-```bash
-$ docker-compose exec shawandpartners-frontend ng test --watch=false
-$ docker-compose exec shawandpartners-frontend ng e2e --port 4202
-```
-
-_Obs.: The full test coverage are not implemented._
+Ensure the app is running in the browser and test hot-reloading again. 
 
 Stop the container before moving on:
 
