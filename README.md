@@ -1,5 +1,9 @@
 # Shaw and Partners Frontend Test
 
+## Requirements
+
+The specifications was taken from [https://shawandpartners.com/full-back-front-test/](https://shawandpartners.com/full-back-front-test/).
+
 ## 3 - [full-stack] [front-end]
 Create a screen that will list all users from GitHub and will display their Id and Login. Remember, you can’t list all users at once you will have to use pagination.
 
