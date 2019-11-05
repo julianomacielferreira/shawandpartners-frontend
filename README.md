@@ -63,6 +63,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 - Webpack&trade;: [https://webpack.js.org/](https://webpack.js.org/)
 
+- TypeScript: [https://www.typescriptlang.org/](https://www.typescriptlang.org/)
+
+- Node.js: [https://nodejs.org/](https://nodejs.org/)
+
 # License
 
 Please see the [license agreement](https://github.com/julianomacielferreira/shawandpartners-frontend/blob/master/LICENSE).
