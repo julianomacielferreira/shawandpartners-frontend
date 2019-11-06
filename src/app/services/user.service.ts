@@ -32,26 +32,27 @@ import { Repository } from '../models/repository';
 })
 export class UserService {
 
+  private endpointAPIURL = 'http://localhost:3000/api/users';
 
   constructor(private http: HttpClient) { }
 
   public listUsers(since: number): Observable<User[]> {
 
-    const githubUsersUrl = `https://api.github.com/users?since=${since}&per_page=5`;
+    const githubUsersUrl = `${this.endpointAPIURL}?since=${since}&per_page=5`;
 
     return this.http.get<User[]>(githubUsersUrl);
   }
 
   public getUser(login: string): Observable<User> {
 
-    const githubUserUrl = `https://api.github.com/users/${login}`;
+    const githubUserUrl = `${this.endpointAPIURL}/${login}/details`;
 
     return this.http.get<User>(githubUserUrl);
   }
 
   public listUserRepositories(login: string): Observable<Repository[]> {
 
-    const githubUserReposUrl = `https://api.github.com/users/${login}/repos`;
+    const githubUserReposUrl = `${this.endpointAPIURL}/${login}/repos`;
 
     return this.http.get<Repository[]>(githubUserReposUrl);
   }
