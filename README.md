@@ -2,21 +2,6 @@
 
 This project is the Frontend for the [shawandpartners-backend](https://github.com/julianomacielferreira/shawandpartners-backend) that contains the endpoints that proxy the GitHub API.
 
-- GET - http://localhost:3000/api/users?since={number}
-This endpoint must return a list of GitHub users and the link for the next page.
-
-- GET - http://localhost:3000/api/users/:username/details
-This endpoint must return the details of a GitHub user
-
-- GET - http://localhost:3000/api/users/:username/repos
-This endpoint must return a list with all user repositories
-
-Change the file [user.service.ts](https://github.com/julianomacielferreira/shawandpartners-frontend/blob/master/src/app/services/user.service.ts) if you use a different 'host:port':
-
-```java
-private endpointAPIURL = 'http://localhost:3000/api/user';
-```
-
 ## Requirements
 
 The specifications was taken from [https://shawandpartners.com/full-back-front-test/](https://shawandpartners.com/full-back-front-test/).
@@ -86,6 +71,23 @@ Stop the container before moving on:
 
 ```bash
 $ docker-compose stop
+```
+
+## Endpoints
+
+- GET - http://localhost:3000/api/users?since={number}
+This endpoint must return a list of GitHub users and the link for the next page.
+
+- GET - http://localhost:3000/api/users/:username/details
+This endpoint must return the details of a GitHub user
+
+- GET - http://localhost:3000/api/users/:username/repos
+This endpoint must return a list with all user repositories
+
+Change the file [user.service.ts](https://github.com/julianomacielferreira/shawandpartners-frontend/blob/master/src/app/services/user.service.ts) if you use a different 'host:port':
+
+```java
+private endpointAPIURL = 'http://localhost:3000/api/user';
 ```
 
 # Screenshots
