@@ -13,7 +13,7 @@ This endpoint must return a list with all user repositories
 
 Change the file [user.service.ts](https://github.com/julianomacielferreira/shawandpartners-frontend/blob/master/src/app/services/user.service.ts) if you use a different 'host:port':
 
-```ts
+```java
 private endpointAPIURL = 'http://localhost:3000/api/user';
 ```
 
