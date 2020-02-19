@@ -2,7 +2,7 @@
 
 This project is the Frontend for the [shawandpartners-backend](https://github.com/julianomacielferreira/shawandpartners-backend) that contains the endpoints that proxy the GitHub API.
 
-## Requirements
+# Requirements
 
 The specifications was taken from [https://shawandpartners.com/full-back-front-test/](https://shawandpartners.com/full-back-front-test/).
 
@@ -20,6 +20,23 @@ Using the screen created in step 3, create a new screen that will display the de
 On the details screen (created on step 4) add a table that will display the public repositories of the user, this table must contain the id, name, and URL to the repository.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
+
+## Endpoints
+
+- GET - http://localhost:3000/api/users?since={number}
+This endpoint must return a list of GitHub users and the link for the next page.
+
+- GET - http://localhost:3000/api/users/:username/details
+This endpoint must return the details of a GitHub user
+
+- GET - http://localhost:3000/api/users/:username/repos
+This endpoint must return a list with all user repositories
+
+Change the file [user.service.ts](https://github.com/julianomacielferreira/shawandpartners-frontend/blob/master/src/app/services/user.service.ts) if you use a different 'host:port':
+
+```java
+private endpointAPIURL = 'http://localhost:3000/api/user';
+```
 
 ## Install Dependencies
 
@@ -53,7 +70,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 **Obs.: Not implemented.**
 
-## Running with Docker
+# Running with Docker
 
 You must have [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/) installed.
 
@@ -71,23 +88,6 @@ Stop the container before moving on:
 
 ```bash
 $ docker-compose stop
-```
-
-## Endpoints
-
-- GET - http://localhost:3000/api/users?since={number}
-This endpoint must return a list of GitHub users and the link for the next page.
-
-- GET - http://localhost:3000/api/users/:username/details
-This endpoint must return the details of a GitHub user
-
-- GET - http://localhost:3000/api/users/:username/repos
-This endpoint must return a list with all user repositories
-
-Change the file [user.service.ts](https://github.com/julianomacielferreira/shawandpartners-frontend/blob/master/src/app/services/user.service.ts) if you use a different 'host:port':
-
-```java
-private endpointAPIURL = 'http://localhost:3000/api/user';
 ```
 
 # Screenshots
