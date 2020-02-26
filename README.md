@@ -23,13 +23,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Endpoints
 
-- GET - http://localhost:3000/api/users?since={number}
+- GET - http://localhost:3000/api/users?since={:number}
 This endpoint must return a list of GitHub users and the link for the next page.
 
-- GET - http://localhost:3000/api/users/:username/details
+- GET - http://localhost:3000/api/users/{:username}/details
 This endpoint must return the details of a GitHub user
 
-- GET - http://localhost:3000/api/users/:username/repos
+- GET - http://localhost:3000/api/users/{:username}/repos
 This endpoint must return a list with all user repositories
 
 Change the file [user.service.ts](https://github.com/julianomacielferreira/shawandpartners-frontend/blob/master/src/app/services/user.service.ts) if you use a different 'host:port':
