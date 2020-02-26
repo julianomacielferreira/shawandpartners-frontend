@@ -23,6 +23,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Endpoints
 
+Replace the params enclosed in **{:param}**:
+
 - GET - http://localhost:3000/api/users?since={:number}
 This endpoint must return a list of GitHub users and the link for the next page.
 
